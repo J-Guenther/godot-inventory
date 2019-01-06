@@ -1,2 +1,2 @@
-# GodotStealthGame
-Heist Meisters from the gamedev.tv Godot course
+# Godot-Engine Inventory
+Inventory Project
