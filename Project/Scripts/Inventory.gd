@@ -14,6 +14,7 @@ func _ready():
 	initialize_layout()
 	slots = slot_grid.get_children()
 	add_item(0,5)
+	add_item(1,7)
 
 func initialize_layout():
 	var slot_size = slot_grid.get_child(0).rect_size.x
@@ -45,5 +46,5 @@ func initialize_layout():
 func add_item(item, amount):
 	for slot in slots:
 		if slot.is_empty():
-			slot.add_item(item, amount)
+			slot.add_item_return_rest(item, amount)
 			return
