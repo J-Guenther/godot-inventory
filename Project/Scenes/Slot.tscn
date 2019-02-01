@@ -25,7 +25,7 @@ group = null
 texture_normal = ExtResource( 1 )
 script = ExtResource( 2 )
 _sections_unfolded = [ "Anchor", "Textures", "Visibility" ]
-limit = 20
+merchant = false
 
 [node name="RichTextLabel" type="RichTextLabel" parent="." index="0"]
 
@@ -33,22 +33,23 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -12.0
+margin_left = -25.0
 margin_top = -15.0
+margin_right = -4.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = true
 mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
-bbcode_enabled = false
+bbcode_enabled = true
 bbcode_text = ""
 visible_characters = -1
 percent_visible = 1.0
 meta_underlined = true
 tab_size = 4
-text = "0"
-scroll_active = true
+text = ""
+scroll_active = false
 scroll_following = false
 selection_enabled = false
 override_selected_font_color = false

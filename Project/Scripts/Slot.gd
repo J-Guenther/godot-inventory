@@ -1,4 +1,5 @@
 extends TextureButton
+signal add_to_inventory
 
 var current_item_key = null 
 var current_item_amount = 0
@@ -7,7 +8,8 @@ var picked_up_all_items = false
 
 onready var default_texture = preload("res://Sprites/PNG/buttonSquare_brown_pressed.png")
 onready var label = $RichTextLabel
-onready var parent = get_parent()
+var parent_inventory = null
+export var merchant = false
 
 
 func is_empty():
@@ -18,12 +20,12 @@ func all_items_on_hand():
 	return true if picked_up_all_items else false
 
 
-func get_capacity_limit():
-	return capacity_limit
-
-
-func same_item_in_slot(item_key):
+func contains_same_item(item_key):
 	return true if current_item_key == item_key else false
+
+
+func is_same_parent(other_slot):
+	return parent_inventory == other_slot.parent_inventory if other_slot != null else true
 
 
 func add_item_return_rest(item_key, amount_to_add):
@@ -62,22 +64,26 @@ func grey_out():
 func color_in():
 	self.modulate = Color(1,1,1,1)
 	picked_up_all_items = false
-	update_ui()
 
 
 func update_ui():
-	label.text = String(current_item_amount)
+	label.bbcode_text = "[right]" + String(current_item_amount) + "[/right]"
+	if is_empty():
+		grey_out()
+	else:
+		color_in()
 
 
 func _on_Slot_pressed():
-	if (MovingSlot.is_empty() or MovingSlot.same_item_in_slot(current_item_key)) and not is_empty():
-		MovingSlot.add_item_to_hand(current_item_key, 1, self)
+	# Pick up items by clicking
+	if (Hand.is_empty() or Hand.contains_same_item(current_item_key)) and not is_empty() and is_same_parent(Hand.origin):
+		Hand.add_item_to_hand(current_item_key, 1, self)
 		remove_item(1)
-		if is_empty():
-			grey_out()
-	elif not MovingSlot.is_empty() and MovingSlot.origin_slot.parent == parent:
-		MovingSlot.return_items_to_origin()
-
-
-
-
+		
+	# Drop items back by clicking
+	elif not Hand.is_empty() and is_same_parent(Hand.origin):
+		Hand.return_items_to_origin()
+	# Move items to different inventory by clicking
+	elif not Hand.is_empty() and not is_same_parent(Hand.origin):
+		var rest = parent_inventory.add_item_return_rest(Hand.current_item_key, Hand.current_item_amount)
+		Hand.remove_item(Hand.current_item_amount - rest)

@@ -17,7 +17,8 @@ config/icon="res://icon.png"
 [autoload]
 
 items="*res://Scripts/items.gd"
-MovingSlot="*res://Scenes/MovingSlot.tscn"
+Hand="*res://Scenes/Hand.tscn"
+Global="*res://Scripts/Global.gd"
 
 [input]
 

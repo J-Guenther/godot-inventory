@@ -4,7 +4,7 @@
 [ext_resource path="res://Sprites/PNG/panel_blue.png" type="Texture" id=2]
 [ext_resource path="res://Scenes/Slot.tscn" type="PackedScene" id=3]
 
-[node name="Inventory" type="Container"]
+[node name="Inventory" type="Container" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -86,28 +86,28 @@ _sections_unfolded = [ "Rect", "custom_constants" ]
 
 margin_right = 45.0
 margin_bottom = 45.0
-_sections_unfolded = [ "Anchor", "Rect", "Textures" ]
+_sections_unfolded = [ "Anchor", "Rect", "Textures", "Visibility" ]
 
 [node name="Slot2" parent="SlotContainer/SlotGrid" index="1" instance=ExtResource( 3 )]
 
 margin_left = 48.0
 margin_right = 93.0
 margin_bottom = 45.0
-_sections_unfolded = [ "Anchor", "Rect", "Textures" ]
+_sections_unfolded = [ "Anchor", "Rect", "Textures", "Visibility" ]
 
 [node name="Slot3" parent="SlotContainer/SlotGrid" index="2" instance=ExtResource( 3 )]
 
 margin_left = 96.0
 margin_right = 141.0
 margin_bottom = 45.0
-_sections_unfolded = [ "Anchor", "Rect", "Textures" ]
+_sections_unfolded = [ "Anchor", "Rect", "Textures", "Visibility" ]
 
 [node name="Slot4" parent="SlotContainer/SlotGrid" index="3" instance=ExtResource( 3 )]
 
 margin_top = 48.0
 margin_right = 45.0
 margin_bottom = 93.0
-_sections_unfolded = [ "Anchor", "Rect", "Textures" ]
+_sections_unfolded = [ "Anchor", "Rect", "Textures", "Visibility" ]
 
 [node name="Slot5" parent="SlotContainer/SlotGrid" index="4" instance=ExtResource( 3 )]
 
@@ -115,6 +115,6 @@ margin_left = 48.0
 margin_top = 48.0
 margin_right = 93.0
 margin_bottom = 93.0
-_sections_unfolded = [ "Anchor", "Rect", "Textures" ]
+_sections_unfolded = [ "Anchor", "Rect", "Textures", "Visibility" ]
 
 

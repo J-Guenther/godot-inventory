@@ -13,8 +13,11 @@ var slots = Array()
 func _ready():
 	initialize_layout()
 	slots = slot_grid.get_children()
-	add_item(0,5)
-	add_item(1,7)
+	for slot in slots:
+		slot.parent_inventory = self
+	
+	add_item_return_rest(0,5)
+	add_item_return_rest(1,7)
 
 func initialize_layout():
 	var slot_size = slot_grid.get_child(0).rect_size.x
@@ -43,8 +46,15 @@ func initialize_layout():
 	background.rect_size = self.rect_size
 	slot_container = slot_grid.rect_size
 
-func add_item(item, amount):
+func add_item_return_rest(item, amount):
+	var empty_slot = null
 	for slot in slots:
-		if slot.is_empty():
-			slot.add_item_return_rest(item, amount)
-			return
+		if slot.is_empty() and empty_slot == null:
+			empty_slot = slot
+		elif slot.contains_same_item(item):
+			return slot.add_item_return_rest(item, amount)
+	if empty_slot != null:
+		return empty_slot.add_item_return_rest(item, amount)
+	else:
+		return null
+
