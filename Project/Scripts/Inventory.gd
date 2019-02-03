@@ -6,6 +6,7 @@ onready var slot_grid = $SlotContainer/SlotGrid
 onready var slot_container = $SlotContainer
 export var MARGIN = 10
 export var PADDING = 3
+export var merchant = false
 
 # Content
 var slots = Array()
@@ -15,6 +16,8 @@ func _ready():
 	slots = slot_grid.get_children()
 	for slot in slots:
 		slot.parent_inventory = self
+		if merchant:
+			slot.merchant = true	
 	
 	add_item_return_rest(0,5)
 	add_item_return_rest(1,7)

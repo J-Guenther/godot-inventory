@@ -14,7 +14,6 @@ layer = -1
 
 [node name="Node" type="CanvasLayer" parent="." index="2"]
 
-editor/display_folded = true
 layer = -1
 offset = Vector2( 0, 0 )
 rotation = 0.0
@@ -27,6 +26,7 @@ margin_left = 401.0
 margin_top = 217.0
 margin_right = 568.0
 margin_bottom = 333.0
+merchant = false
 
 [node name="Inventory2" parent="Node" index="1" instance=ExtResource( 3 )]
 
@@ -34,5 +34,6 @@ margin_left = 780.0
 margin_top = 14.0
 margin_right = 947.0
 margin_bottom = 130.0
+merchant = true
 
 

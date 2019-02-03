@@ -9,7 +9,7 @@ var picked_up_all_items = false
 onready var default_texture = preload("res://Sprites/PNG/buttonSquare_brown_pressed.png")
 onready var label = $RichTextLabel
 var parent_inventory = null
-export var merchant = false
+var merchant = false
 
 
 func is_empty():
@@ -77,8 +77,18 @@ func update_ui():
 func _on_Slot_pressed():
 	# Pick up items by clicking
 	if (Hand.is_empty() or Hand.contains_same_item(current_item_key)) and not is_empty() and is_same_parent(Hand.origin):
-		Hand.add_item_to_hand(current_item_key, 1, self)
-		remove_item(1)
+		var buyValue = items.itemDictionary[current_item_key].buyValue
+		if merchant and Global.Player.money >= buyValue:
+			Hand.add_item_to_hand(current_item_key, 1, self)
+			remove_item(1)
+			Global.Player.update_money(-buyValue)
+			Global.Player.value_on_hand = buyValue
+			print("Buy")
+		elif not merchant:
+			Hand.add_item_to_hand(current_item_key, 1, self)
+			remove_item(1)
+			print("Take")
+		
 		
 	# Drop items back by clicking
 	elif not Hand.is_empty() and is_same_parent(Hand.origin):
@@ -86,4 +96,11 @@ func _on_Slot_pressed():
 	# Move items to different inventory by clicking
 	elif not Hand.is_empty() and not is_same_parent(Hand.origin):
 		var rest = parent_inventory.add_item_return_rest(Hand.current_item_key, Hand.current_item_amount)
+		if Hand.origin.merchant:
+			if rest == 0:
+				Global.Player.value_on_hand = 0
+		elif merchant:
+			Global.Player.update_money(items.itemDictionary[current_item_key].sellValue * Hand.current_item_amount)
+			# TODO what about merchant slot capacity limit?
 		Hand.remove_item(Hand.current_item_amount - rest)
+		

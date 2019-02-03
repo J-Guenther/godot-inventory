@@ -38,6 +38,10 @@ func return_items_to_origin():
 
 func _input(event):
 	if Input.is_action_pressed("ui_cancel"):
+		if not is_empty() and origin.merchant:
+			Global.Player.update_money(Global.Player.value_on_hand * current_item_amount)
+			Global.Player.value_on_hand = 0
 		return_items_to_origin()
+		
 
 

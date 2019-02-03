@@ -9,20 +9,20 @@ const itemImages = [
 const itemDictionary = {
 	0: {
 		"itemName": "Berries",
-		"itemBuyValue": 456,
-		"itemSellValue": 987,
+		"buyValue": 456,
+		"sellValue": 987,
 		"itemIcon": itemImages[0]
 	},
 	1: {
 		"itemName": "Grass",
-		"itemBuyValue": 100,
-		"itemSellValue": 987,
+		"buyValue": 100,
+		"sellValue": 987,
 		"itemIcon": itemImages[1]
 	},
 	2: {
 		"itemName": "Knife",
-		"itemBuyValue": 987,
-		"itemSellValue": 987,
+		"buyValue": 987,
+		"sellValue": 987,
 		"itemIcon": itemImages[2]
 	},
 };
