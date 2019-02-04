@@ -37,7 +37,7 @@ func add_item_return_rest(item_key, amount_to_add):
 	else:
 		current_item_amount += amount_to_add
 	self.texture_normal = items.itemDictionary[item_key].itemIcon
-	update_ui()
+	update_ui()	
 	return rest
 
 
@@ -70,8 +70,11 @@ func update_ui():
 	label.bbcode_text = "[right]" + String(current_item_amount) + "[/right]"
 	if is_empty():
 		grey_out()
+		hint_tooltip = ""
 	else:
 		color_in()
+		hint_tooltip = ("" + items.itemDictionary[current_item_key].name + "\n"
+				 + items.itemDictionary[current_item_key].description)
 
 
 func _on_Slot_pressed():
@@ -100,7 +103,8 @@ func _on_Slot_pressed():
 			if rest == 0:
 				Global.Player.value_on_hand = 0
 		elif merchant:
-			Global.Player.update_money(items.itemDictionary[current_item_key].sellValue * Hand.current_item_amount)
+			print("Sell")
+			Global.Player.update_money(items.itemDictionary[Hand.current_item_key].sellValue * Hand.current_item_amount)
 			# TODO what about merchant slot capacity limit?
 		Hand.remove_item(Hand.current_item_amount - rest)
 		

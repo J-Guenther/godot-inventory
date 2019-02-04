@@ -8,21 +8,24 @@ const itemImages = [
 
 const itemDictionary = {
 	0: {
-		"itemName": "Berries",
+		"name": "Berries",
 		"buyValue": 456,
 		"sellValue": 987,
-		"itemIcon": itemImages[0]
+		"itemIcon": itemImages[0],
+		"description":"Tasty berries"
 	},
 	1: {
-		"itemName": "Grass",
+		"name": "Grass",
 		"buyValue": 100,
 		"sellValue": 987,
-		"itemIcon": itemImages[1]
+		"itemIcon": itemImages[1],
+		"description":"Dry grass"
 	},
 	2: {
-		"itemName": "Knife",
+		"name": "Knife",
 		"buyValue": 987,
 		"sellValue": 987,
-		"itemIcon": itemImages[2]
+		"itemIcon": itemImages[2],
+		"description":"A sharp blade"
 	},
 };
