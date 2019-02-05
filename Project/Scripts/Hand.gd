@@ -25,6 +25,7 @@ func remove_item(amount_to_remove):
 		if origin.is_empty() and not origin.merchant:
 			origin.color_in()
 			origin.clear_slot()
+			print("Clear origin")
 		origin = null
 		self.visible = false
 		

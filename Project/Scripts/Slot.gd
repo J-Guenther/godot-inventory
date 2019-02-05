@@ -67,9 +67,14 @@ func color_in():
 
 
 func update_ui():
-	label.bbcode_text = "[right]" + String(current_item_amount) + "[/right]"
+	if is_empty() and not merchant:
+		label.bbcode_text = "[right]" + "" + "[/right]"
+	else:
+		label.bbcode_text = "[right]" + String(current_item_amount) + "[/right]"
+		
 	if is_empty():
-		grey_out()
+		if not Hand.is_empty():
+			grey_out()
 		hint_tooltip = ""
 	else:
 		color_in()
