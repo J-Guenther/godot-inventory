@@ -7,6 +7,9 @@ onready var slot_container = $SlotContainer
 export var MARGIN = 10
 export var PADDING = 3
 export var merchant = false
+export var usable = false
+export var capacity = 20
+export var header = ""
 
 # Content
 var slots = Array()
@@ -16,11 +19,12 @@ func _ready():
 	slots = slot_grid.get_children()
 	for slot in slots:
 		slot.parent_inventory = self
+		slot.capacity_limit = capacity
+		slot.usable = usable
 		if merchant:
-			slot.merchant = true	
-	
-	add_item_return_rest(0,5)
-	add_item_return_rest(1,7)
+			slot.merchant = true
+	$Header/RichTextLabel.bbcode_text = "[center]" + header + "[/center]"
+
 
 func initialize_layout():
 	var slot_size = slot_grid.get_child(0).rect_size.x

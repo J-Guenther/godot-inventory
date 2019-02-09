@@ -6,26 +6,38 @@ const itemImages = [
 	preload("res://Sprites/Items/knife.png"),
 ];
 
-const itemDictionary = {
+# use: 0 means not usable
+var itemDictionary = {
 	0: {
 		"name": "Berries",
-		"buyValue": 456,
-		"sellValue": 987,
+		"buyValue": 5,
+		"sellValue": 3,
 		"itemIcon": itemImages[0],
-		"description":"Tasty berries"
+		"description":"Tasty berries",
+		"use": funcref(self, "use_berries")
 	},
 	1: {
 		"name": "Grass",
-		"buyValue": 100,
-		"sellValue": 987,
+		"buyValue": 2,
+		"sellValue": 1,
 		"itemIcon": itemImages[1],
-		"description":"Dry grass"
+		"description":"Dry grass",
+		"use": null
 	},
 	2: {
 		"name": "Knife",
-		"buyValue": 987,
-		"sellValue": 987,
+		"buyValue": 100,
+		"sellValue": 70,
 		"itemIcon": itemImages[2],
-		"description":"A sharp blade"
+		"description":"A sharp blade",
+		"use": funcref(self, "use_knife")
 	},
-};
+}
+
+
+func use_berries():
+	print("Used berry")
+
+
+func use_knife():
+	print("Used Knife")

@@ -10,6 +10,7 @@ onready var default_texture = preload("res://Sprites/PNG/buttonSquare_brown_pres
 onready var label = $RichTextLabel
 var parent_inventory = null
 var merchant = false
+var usable = false
 
 
 func is_empty():
@@ -79,7 +80,9 @@ func update_ui():
 	else:
 		color_in()
 		hint_tooltip = ("" + items.itemDictionary[current_item_key].name + "\n"
-				 + items.itemDictionary[current_item_key].description)
+				+ items.itemDictionary[current_item_key].description + "\nBuy: " 
+				+ str(items.itemDictionary[current_item_key].buyValue) + "\nSell: "
+				+ str(items.itemDictionary[current_item_key].sellValue))
 
 
 func _on_Slot_pressed():
@@ -112,4 +115,12 @@ func _on_Slot_pressed():
 			Global.Player.update_money(items.itemDictionary[Hand.current_item_key].sellValue * Hand.current_item_amount)
 			# TODO what about merchant slot capacity limit?
 		Hand.remove_item(Hand.current_item_amount - rest)
-		
+
+
+func _input(event):
+	if Input.is_action_pressed("ui_cancel") and usable and get_global_rect().has_point(get_global_mouse_position()) and Hand.is_empty():
+		if not items.itemDictionary[current_item_key].use == null:
+			items.itemDictionary[current_item_key].use.call_func()
+			remove_item(1)
+			if is_empty():
+				clear_slot()

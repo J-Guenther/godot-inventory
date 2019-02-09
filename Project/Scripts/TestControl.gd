@@ -1,22 +1,14 @@
-extends CanvasLayer
-
-var isOpen = false
+extends Node
 
 func _ready():
-	# Called when the node is added to the scene for the first time.
-	# Initialization here
-	pass
+	# Initialize Player Inventory
+	var inventory = $Inventories/Inventory
+	inventory.add_item_return_rest(0,5)
+	
+	
+	# Initialize Merchant
+	var merchant = $Merchants/Inventory2
+	merchant.add_item_return_rest(1,7)
+	merchant.add_item_return_rest(2,20)
 
-#func _process(delta):
-#	# Called every frame. Delta is time since last frame.
-#	# Update game logic here.
-#	pass
 
-
-func _on_Button_pressed():
-	if isOpen:
-		isOpen = !isOpen
-		$Inventory.hide()
-	else:
-		isOpen = !isOpen
-		$Inventory.popup_centered()
