@@ -1,43 +1,39 @@
 extends Node
 
 const itemImages = [
-	preload("res://Sprites/Items/berries.png"),
-	preload("res://Sprites/Items/grass.png"),
-	preload("res://Sprites/Items/knife.png"),
+	preload("res://Sprites/Items/licensed/book.png"),
+	preload("res://Sprites/Items/licensed/gold_bar.png"),
+	preload("res://Sprites/Items/licensed/gold_nugget.png"),
 ];
 
 # use: 0 means not usable
 var itemDictionary = {
 	0: {
-		"name": "Berries",
-		"buyValue": 5,
-		"sellValue": 3,
+		"name": "Book",
+		"buyValue": 50,
+		"sellValue": 30,
 		"itemIcon": itemImages[0],
-		"description":"Tasty berries",
-		"use": funcref(self, "use_berries")
+		"description":"Could be the Necronomicon",
+		"use": funcref(self, "use_book")
 	},
 	1: {
-		"name": "Grass",
-		"buyValue": 2,
-		"sellValue": 1,
-		"itemIcon": itemImages[1],
-		"description":"Dry grass",
+		"name": "Gold Nugget",
+		"buyValue": 100,
+		"sellValue": 80,
+		"itemIcon": itemImages[2],
+		"description":"Golden and shiny",
 		"use": null
 	},
 	2: {
-		"name": "Knife",
-		"buyValue": 100,
-		"sellValue": 70,
-		"itemIcon": itemImages[2],
-		"description":"A sharp blade",
-		"use": funcref(self, "use_knife")
+		"name": "Gold Bar",
+		"buyValue": 200,
+		"sellValue": 150,
+		"itemIcon": itemImages[1],
+		"description":"It is heavy",
+		"use": null
 	},
 }
 
 
-func use_berries():
+func use_book():
 	print("Used berry")
-
-
-func use_knife():
-	print("Used Knife")

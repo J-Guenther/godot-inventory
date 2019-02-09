@@ -89,30 +89,20 @@ _sections_unfolded = [ "Rect", "custom_constants" ]
 
 [node name="Slot" parent="SlotContainer/SlotGrid" index="0" instance=ExtResource( 3 )]
 
-margin_right = 45.0
-margin_bottom = 45.0
-_sections_unfolded = [ "Anchor", "Hint", "Rect", "Textures", "Visibility" ]
-
 [node name="Slot2" parent="SlotContainer/SlotGrid" index="1" instance=ExtResource( 3 )]
 
 margin_left = 48.0
 margin_right = 93.0
-margin_bottom = 45.0
-_sections_unfolded = [ "Anchor", "Hint", "Rect", "Textures", "Visibility" ]
 
 [node name="Slot3" parent="SlotContainer/SlotGrid" index="2" instance=ExtResource( 3 )]
 
 margin_left = 96.0
 margin_right = 141.0
-margin_bottom = 45.0
-_sections_unfolded = [ "Anchor", "Hint", "Rect", "Textures", "Visibility" ]
 
 [node name="Slot4" parent="SlotContainer/SlotGrid" index="3" instance=ExtResource( 3 )]
 
 margin_top = 48.0
-margin_right = 45.0
 margin_bottom = 93.0
-_sections_unfolded = [ "Anchor", "Hint", "Rect", "Textures", "Visibility" ]
 
 [node name="Slot5" parent="SlotContainer/SlotGrid" index="4" instance=ExtResource( 3 )]
 
@@ -120,7 +110,6 @@ margin_left = 48.0
 margin_top = 48.0
 margin_right = 93.0
 margin_bottom = 93.0
-_sections_unfolded = [ "Anchor", "Hint", "Rect", "Textures", "Visibility" ]
 
 [node name="Header" type="NinePatchRect" parent="." index="2"]
 

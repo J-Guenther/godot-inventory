@@ -6,7 +6,6 @@ var current_item_amount = 0
 var capacity_limit = 20
 var picked_up_all_items = false
 
-onready var default_texture = preload("res://Sprites/PNG/buttonSquare_brown_pressed.png")
 onready var label = $RichTextLabel
 var parent_inventory = null
 var merchant = false
@@ -33,12 +32,13 @@ func add_item_return_rest(item_key, amount_to_add):
 	current_item_key = item_key
 	var rest = 0
 	if (current_item_amount + amount_to_add) > capacity_limit:
-		current_item_amount = capacity_limit
 		rest = (current_item_amount + amount_to_add) - capacity_limit
+		current_item_amount = capacity_limit
 	else:
 		current_item_amount += amount_to_add
-	self.texture_normal = items.itemDictionary[item_key].itemIcon
-	update_ui()	
+	$ItemTexture.texture = items.itemDictionary[item_key].itemIcon
+	update_ui()
+	print(rest)
 	return rest
 
 
@@ -52,7 +52,7 @@ func remove_item(amount_to_remove):
 func clear_slot():
 	current_item_key = null
 	current_item_amount = 0
-	self.texture_normal = default_texture
+	$ItemTexture.texture = null
 	update_ui()
 
 
