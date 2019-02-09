@@ -7,6 +7,7 @@ var capacity_limit = 20
 var picked_up_all_items = false
 
 onready var label = $RichTextLabel
+onready var audio_stream = $AudioStreamPlayer
 var parent_inventory = null
 var merchant = false
 var usable = false
@@ -38,7 +39,6 @@ func add_item_return_rest(item_key, amount_to_add):
 		current_item_amount += amount_to_add
 	$ItemTexture.texture = items.itemDictionary[item_key].itemIcon
 	update_ui()
-	print(rest)
 	return rest
 
 
@@ -98,12 +98,16 @@ func _on_Slot_pressed():
 		elif not merchant:
 			Hand.add_item_to_hand(current_item_key, 1, self)
 			remove_item(1)
+			audio_stream.stream = Audio.inventory_click
+			audio_stream.play()
 			print("Take")
 		
 		
 	# Drop items back by clicking
 	elif not Hand.is_empty() and is_same_parent(Hand.origin):
 		Hand.return_items_to_origin()
+		audio_stream.stream = Audio.inventory_drop
+		audio_stream.play()
 	# Move items to different inventory by clicking
 	elif not Hand.is_empty() and not is_same_parent(Hand.origin):
 		var rest = parent_inventory.add_item_return_rest(Hand.current_item_key, Hand.current_item_amount)
@@ -114,6 +118,9 @@ func _on_Slot_pressed():
 			print("Sell")
 			Global.Player.update_money(items.itemDictionary[Hand.current_item_key].sellValue * Hand.current_item_amount)
 			# TODO what about merchant slot capacity limit?
+		else:
+			audio_stream.stream = Audio.inventory_pickup
+			audio_stream.play()
 		Hand.remove_item(Hand.current_item_amount - rest)
 
 

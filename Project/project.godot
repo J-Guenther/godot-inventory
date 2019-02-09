@@ -19,6 +19,11 @@ config/icon="res://icon.png"
 items="*res://Scripts/items.gd"
 Hand="*res://Scenes/Hand.tscn"
 Global="*res://Scripts/Global.gd"
+Audio="*res://Scripts/Audio.gd"
+
+[gui]
+
+timers/tooltip_delay_sec=0.2
 
 [input]
 

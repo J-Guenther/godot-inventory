@@ -56,7 +56,7 @@ func initialize_layout():
 func add_item_return_rest(item, amount):
 	var empty_slot = null
 	for slot in slots:
-		if slot.is_empty() and empty_slot == null:
+		if slot.is_empty() and slot.current_item_key == null and empty_slot == null:
 			empty_slot = slot
 		elif slot.contains_same_item(item):
 			return slot.add_item_return_rest(item, amount)
