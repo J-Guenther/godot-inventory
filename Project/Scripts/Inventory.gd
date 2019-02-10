@@ -4,17 +4,21 @@ extends Container
 onready var background = $Background
 onready var slot_grid = $SlotContainer/SlotGrid
 onready var slot_container = $SlotContainer
+var slot_scene = load("res://Scenes/Slot.tscn")
 export var MARGIN = 10
 export var PADDING = 3
 export var merchant = false
 export var usable = false
 export var capacity = 20
+export var number_of_slots = 6
 export var header = ""
 
 # Content
 var slots = Array()
 
 func _ready():
+	remove_all_slots() # clear initial Slots
+	add_slots(number_of_slots)
 	initialize_layout()
 	slots = slot_grid.get_children()
 	for slot in slots:
@@ -24,6 +28,26 @@ func _ready():
 		if merchant:
 			slot.merchant = true
 	$Header/RichTextLabel.bbcode_text = "[center]" + header + "[/center]"
+
+
+func debug_height():
+	print("Background: " + str($Background.rect_size.y))
+	print("SlotContainer: " + str($SlotContainer.rect_size.y))
+	print("SlotGrid: " + str(slot_grid.rect_size.y))
+	print("---------------------------")
+
+
+func remove_all_slots():
+	for child in slot_grid.get_children():
+		slot_grid.remove_child(child)
+		child.queue_free()
+
+
+func add_slots(number_of_slots):
+	for slot in number_of_slots:
+		var slot_instance = slot_scene.instance()
+		slot_instance.set_name("Slot")
+		slot_grid.add_child(slot_instance)
 
 
 func initialize_layout():

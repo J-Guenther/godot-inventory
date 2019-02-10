@@ -94,6 +94,8 @@ func _on_Slot_pressed():
 			remove_item(1)
 			Global.Player.update_money(-buyValue)
 			Global.Player.value_on_hand = buyValue
+			audio_stream.stream = Audio.inventory_pickup_merchant
+			audio_stream.play()
 			print("Buy")
 		elif not merchant:
 			Hand.add_item_to_hand(current_item_key, 1, self)
@@ -114,10 +116,14 @@ func _on_Slot_pressed():
 		if Hand.origin.merchant:
 			if rest == 0:
 				Global.Player.value_on_hand = 0
+			audio_stream.stream = Audio.inventory_buy
+			audio_stream.play()
 		elif merchant:
 			print("Sell")
 			Global.Player.update_money(items.itemDictionary[Hand.current_item_key].sellValue * Hand.current_item_amount)
 			# TODO what about merchant slot capacity limit?
+			audio_stream.stream = Audio.inventory_buy
+			audio_stream.play()
 		else:
 			audio_stream.stream = Audio.inventory_pickup
 			audio_stream.play()
