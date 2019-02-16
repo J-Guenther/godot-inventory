@@ -107,6 +107,11 @@ func _on_Slot_pressed():
 		
 	# Drop items back by clicking
 	elif not Hand.is_empty() and is_same_parent(Hand.origin):
+		print("Drop")
+		if merchant:
+			print("to merchant")
+			Global.Player.update_money(Global.Player.value_on_hand * Hand.current_item_amount)
+			Global.Player.value_on_hand = 0
 		Hand.return_items_to_origin()
 		audio_stream.stream = Audio.inventory_drop
 		audio_stream.play()

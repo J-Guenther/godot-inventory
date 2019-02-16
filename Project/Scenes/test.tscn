@@ -5,7 +5,7 @@
 [ext_resource path="res://Scenes/GUI.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/Inventory.tscn" type="PackedScene" id=4]
 
-[node name="CanvasLayer" type="Node"]
+[node name="CanvasLayer" type="Node" index="0"]
 
 script = ExtResource( 1 )
 
