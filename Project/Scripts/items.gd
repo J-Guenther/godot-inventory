@@ -30,7 +30,10 @@ var itemDictionary = {
 		"sellValue": 150,
 		"itemIcon": itemImages[1],
 		"description":"It is heavy",
-		"use": null
+		"use": null,
+		"materials": {
+			1: 2
+		}
 	},
 }
 
