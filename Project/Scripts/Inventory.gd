@@ -11,7 +11,6 @@ export var merchant = false
 export var usable = false
 export var capacity = 20
 export var number_of_slots = 6
-export var header = ""
 
 # Content
 var slots = Array()
@@ -27,13 +26,12 @@ func _ready():
 		slot.usable = usable
 		if merchant:
 			slot.merchant = true
-	$Header/RichTextLabel.bbcode_text = "[center]" + header + "[/center]"
 
 
 func debug_height():
-	print("Background: " + str($Background.rect_size.y))
-	print("SlotContainer: " + str($SlotContainer.rect_size.y))
-	print("SlotGrid: " + str(slot_grid.rect_size.y))
+	print("Background: " + str($Background.rect_size.x))
+	print("SlotContainer: " + str($SlotContainer.rect_size.x))
+	print("SlotGrid: " + str(slot_grid.rect_size.x))
 	print("---------------------------")
 
 
@@ -89,3 +87,11 @@ func add_item_return_rest(item, amount):
 	else:
 		return null
 
+func remove_item(item, amount):
+	for slot in slots:
+		if slot.contains_same_item(item):
+			slot.remove_item(amount)
+			if slot.is_empty():
+				slot.clear_slot()
+			
+	

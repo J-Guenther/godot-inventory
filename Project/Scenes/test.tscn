@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Scripts/TestControl.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/GUI.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/Inventory.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/Business.tscn" type="PackedScene" id=5]
 
 [node name="CanvasLayer" type="Node"]
 
@@ -23,24 +24,24 @@ rotation = 0.0
 scale = Vector2( 1, 1 )
 transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 
-[node name="Inventory" parent="Inventories" index="0" instance=ExtResource( 4 )]
+[node name="Inventory2" parent="Inventories" index="0" instance=ExtResource( 4 )]
 
-margin_left = 69.0
-margin_top = 212.0
-margin_right = 236.0
-margin_bottom = 328.0
-header = "Inventory"
-
-[node name="Inventory2" parent="Inventories" index="1" instance=ExtResource( 4 )]
-
+visible = false
 margin_left = 71.0
 margin_top = 439.0
 margin_right = 238.0
 margin_bottom = 555.0
 usable = true
 capacity = 1
-number_of_slots = 3
-header = "Pouch"
+number_of_slots = 4
+
+[node name="Business" parent="Inventories" index="1" instance=ExtResource( 5 )]
+
+margin_left = 59.0
+margin_top = 69.0
+margin_right = 648.0
+margin_bottom = 500.0
+workers = 3
 
 [node name="Merchants" type="CanvasLayer" parent="." index="3"]
 
@@ -52,13 +53,12 @@ transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 
 [node name="Inventory2" parent="Merchants" index="0" instance=ExtResource( 4 )]
 
-margin_left = 748.0
-margin_top = 210.0
-margin_right = 915.0
-margin_bottom = 326.0
+margin_left = 814.0
+margin_top = 251.0
+margin_right = 981.0
+margin_bottom = 367.0
 merchant = true
 capacity = 5000
 number_of_slots = 9
-header = "Merchant"
 
 

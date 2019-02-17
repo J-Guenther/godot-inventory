@@ -33,7 +33,8 @@ var itemDictionary = {
 		"use": null,
 		"materials": {
 			1: 2
-		}
+		},
+		"productionTime": 10
 	},
 }
 
