@@ -12,6 +12,8 @@ func _ready():
 	update_ui()
 	for recipe in $Crafting/ScrollContainer/VBoxContainer.get_children():
 		recipe.parent = self
+		inventory.connect("inventory_changed", recipe, "_on_inventory_change")
+	
 
 func update_ui():
 	$MetaInfo/VBoxContainer/WorkersLabel.bbcode_text = "Workers: " + str(workers)

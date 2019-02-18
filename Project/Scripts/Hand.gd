@@ -43,6 +43,8 @@ func _input(event):
 			if origin.merchant:
 				Global.Player.update_money(Global.Player.value_on_hand * current_item_amount)
 				Global.Player.value_on_hand = 0
+			else:
+				origin.parent_inventory.emit_inventory_changed_signal()
 			return_items_to_origin()
 			audio_stream.stream = Audio.inventory_drop
 			audio_stream.play()

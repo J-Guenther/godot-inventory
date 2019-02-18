@@ -5,6 +5,7 @@ onready var background = $Background
 onready var material_grid = $MaterialContainer/MaterialGrid
 onready var material_container = $MaterialContainer
 var material_scene = load("res://Scenes/Material.tscn")
+onready var audio_stream = $AudioStreamPlayer
 
 export var product = 2
 var materials = []
@@ -20,6 +21,7 @@ var pause = false
 func _ready():
 	initialize_layout()
 	production_time = items.itemDictionary[product].productionTime
+	
 
 
 func _process(delta):
@@ -49,7 +51,8 @@ func working_process(delta):
 			remove_materials_from_inventory()
 		else:
 			pause = true
-			print("In einem Eurer Betriebe fehlen Rohstoffe!")
+			audio_stream.stream = Audio.no_ressources
+			audio_stream.play()
 	else:
 		if progress < 1:
 			rate = 1.0 / (production_time / assigned_workers)
@@ -109,3 +112,9 @@ func _on_ButtonDown_pressed():
 		parent.update_ui()
 		if assigned_workers == 0:
 			work_on_product = false
+
+
+func _on_inventory_change():
+	print("Inventory changed")
+	if work_on_product and pause:
+		pause = false

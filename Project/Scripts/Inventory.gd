@@ -1,5 +1,7 @@
 extends Container
 
+signal inventory_changed
+
 # Visuals
 onready var background = $Background
 onready var slot_grid = $SlotContainer/SlotGrid
@@ -81,8 +83,10 @@ func add_item_return_rest(item, amount):
 		if slot.is_empty() and slot.current_item_key == null and empty_slot == null:
 			empty_slot = slot
 		elif slot.contains_same_item(item):
+			emit_inventory_changed_signal()
 			return slot.add_item_return_rest(item, amount)
 	if empty_slot != null:
+		emit_inventory_changed_signal()
 		return empty_slot.add_item_return_rest(item, amount)
 	else:
 		return null
@@ -94,4 +98,7 @@ func remove_item(item, amount):
 			if slot.is_empty():
 				slot.clear_slot()
 			
+
+func emit_inventory_changed_signal():
+	emit_signal("inventory_changed")
 	
