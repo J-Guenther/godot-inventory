@@ -91,11 +91,13 @@ func add_item_return_rest(item, amount):
 	else:
 		return null
 
+# This should not get called by the player, only by things that remove items automacially
+# like crafting
 func remove_item(item, amount):
 	for slot in slots:
 		if slot.contains_same_item(item):
 			slot.remove_item(amount)
-			if slot.is_empty():
+			if slot.is_empty() and not slot.is_being_picked_up:
 				slot.clear_slot()
 			
 

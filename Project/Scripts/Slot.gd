@@ -4,7 +4,8 @@ signal add_to_inventory
 var current_item_key = null 
 var current_item_amount = 0
 var capacity_limit = 20
-var picked_up_all_items = false
+var picked_up_all_items = false # TODO nesscessary?
+var is_being_picked_up = false
 
 onready var label = $RichTextLabel
 onready var audio_stream = $AudioStreamPlayer
@@ -88,6 +89,7 @@ func update_ui():
 func _on_Slot_pressed():
 	# Pick up items by clicking
 	if (Hand.is_empty() or Hand.contains_same_item(current_item_key)) and not is_empty() and is_same_parent(Hand.origin):
+		is_being_picked_up = true
 		var buyValue = items.itemDictionary[current_item_key].buyValue
 		if merchant and Global.Player.money >= buyValue:
 			Hand.add_item_to_hand(current_item_key, 1, self)

@@ -6,7 +6,7 @@
 [ext_resource path="res://Sprites/licensed/frame_highlighted.png" type="Texture" id=4]
 [ext_resource path="res://Scenes/CraftingRecipe.tscn" type="PackedScene" id=5]
 
-[node name="Business" type="Container"]
+[node name="Business" type="Container" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -250,6 +250,30 @@ selection_enabled = false
 override_selected_font_color = false
 _sections_unfolded = [ "BBCode", "Rect" ]
 
+[node name="NewWorkerButton" type="Button" parent="MetaInfo/VBoxContainer" index="4"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 96.0
+margin_right = 172.0
+margin_bottom = 116.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+focus_mode = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+group = null
+text = "Recruit New Worker"
+flat = false
+align = 1
+
 [node name="Crafting" type="Container" parent="." index="3"]
 
 anchor_left = 0.0
@@ -302,5 +326,25 @@ size_flags_vertical = 1
 alignment = 0
 
 [node name="CraftingRecipe" parent="Crafting/ScrollContainer/VBoxContainer" index="0" instance=ExtResource( 5 )]
+
+[node name="Timer" type="Timer" parent="." index="4"]
+
+process_mode = 1
+wait_time = 10.0
+one_shot = true
+autostart = false
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." index="5"]
+
+stream = null
+volume_db = 0.0
+pitch_scale = 1.0
+autoplay = false
+mix_target = 0
+bus = "Master"
+
+[connection signal="pressed" from="MetaInfo/VBoxContainer/NewWorkerButton" to="." method="_on_NewWorkerButton_pressed"]
+
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
 
 

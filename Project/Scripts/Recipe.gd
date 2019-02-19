@@ -17,6 +17,7 @@ var rate = 0
 var production_time
 var during_process = false # the process of producing the product
 var pause = false
+var audio_warning_already_played = false
 
 func _ready():
 	initialize_layout()
@@ -51,8 +52,10 @@ func working_process(delta):
 			remove_materials_from_inventory()
 		else:
 			pause = true
-			audio_stream.stream = Audio.no_ressources
-			audio_stream.play()
+			if not audio_warning_already_played:
+				audio_stream.stream = Audio.no_ressources
+				audio_stream.play()
+				audio_warning_already_played = true
 	else:
 		if progress < 1:
 			rate = 1.0 / (production_time / assigned_workers)
@@ -64,6 +67,7 @@ func working_process(delta):
 			during_process = false
 			progress = 0
 			$Product/ItemIcon/ProgressLabel.bbcode_text = "[center]" + str(progress) + "[/center]"
+			audio_warning_already_played = false
 			
 
 
@@ -93,8 +97,8 @@ func materials_available():
 
 
 func _on_ButtonUp_pressed():
-	if parent.workers > 0:
-		parent.workers -= 1
+	if parent.assigned_workers < parent.workers:
+		parent.assigned_workers += 1
 		assigned_workers += 1
 		$WorkerToggle/WorkerLabel.text = str(assigned_workers)
 		parent.update_ui()
@@ -106,8 +110,8 @@ func _on_ButtonUp_pressed():
 
 func _on_ButtonDown_pressed():
 	if assigned_workers > 0:
-		parent.workers += 1
 		assigned_workers -=1
+		parent.assigned_workers -= 1
 		$WorkerToggle/WorkerLabel.text = str(assigned_workers)
 		parent.update_ui()
 		if assigned_workers == 0:

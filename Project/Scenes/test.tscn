@@ -6,7 +6,7 @@
 [ext_resource path="res://Scenes/Inventory.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scenes/Business.tscn" type="PackedScene" id=5]
 
-[node name="CanvasLayer" type="Node" index="0"]
+[node name="CanvasLayer" type="Node"]
 
 script = ExtResource( 1 )
 
@@ -41,7 +41,6 @@ margin_left = 59.0
 margin_top = 69.0
 margin_right = 648.0
 margin_bottom = 500.0
-workers = 3
 
 [node name="Merchants" type="CanvasLayer" parent="." index="3"]
 

@@ -26,9 +26,9 @@ func remove_item(amount_to_remove):
 			origin.color_in()
 			origin.clear_slot()
 			print("Clear origin")
+		origin.is_being_picked_up = false
 		origin = null
 		self.visible = false
-		
 
 
 func return_items_to_origin():
