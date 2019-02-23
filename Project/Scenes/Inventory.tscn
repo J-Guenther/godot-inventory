@@ -25,6 +25,7 @@ merchant = false
 usable = false
 capacity = 20
 number_of_slots = 6
+columns = 4
 
 [node name="Background" type="NinePatchRect" parent="." index="0"]
 

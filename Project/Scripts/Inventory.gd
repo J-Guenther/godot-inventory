@@ -13,6 +13,7 @@ export var merchant = false
 export var usable = false
 export var capacity = 20
 export var number_of_slots = 6
+export var columns = 4
 
 # Content
 var slots = Array()
@@ -53,7 +54,7 @@ func add_slots(number_of_slots):
 func initialize_layout():
 	var slot_size = slot_grid.get_child(0).rect_size.x
 	var slot_count = slot_grid.get_child_count()
-	var columns = slot_grid.columns
+	slot_grid.columns = columns
 	var rows = (slot_count - (slot_count % columns)) / columns + 1 if not slot_count % columns == 0 else slot_count / columns
 	
 	# Calculate Margin between grid and background
@@ -89,7 +90,7 @@ func add_item_return_rest(item, amount):
 		emit_inventory_changed_signal()
 		return empty_slot.add_item_return_rest(item, amount)
 	else:
-		return null
+		return amount
 
 # This should not get called by the player, only by things that remove items automacially
 # like crafting

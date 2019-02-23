@@ -6,7 +6,7 @@
 [ext_resource path="res://Sprites/licensed/frame_highlighted.png" type="Texture" id=4]
 [ext_resource path="res://Scenes/CraftingRecipe.tscn" type="PackedScene" id=5]
 
-[node name="Business" type="Container" index="0"]
+[node name="Business" type="Container"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -51,6 +51,7 @@ margin_left = 330.0
 margin_top = 13.0
 margin_right = 497.0
 margin_bottom = 129.0
+columns = 4
 
 [node name="MetaInfo" type="Container" parent="." index="2"]
 
@@ -316,7 +317,7 @@ anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_right = 332.0
-margin_bottom = 48.0
+margin_bottom = 256.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 1
@@ -326,6 +327,32 @@ size_flags_vertical = 1
 alignment = 0
 
 [node name="CraftingRecipe" parent="Crafting/ScrollContainer/VBoxContainer" index="0" instance=ExtResource( 5 )]
+
+product = 16
+
+[node name="CraftingRecipe2" parent="Crafting/ScrollContainer/VBoxContainer" index="1" instance=ExtResource( 5 )]
+
+margin_top = 52.0
+margin_bottom = 100.0
+product = 18
+
+[node name="CraftingRecipe3" parent="Crafting/ScrollContainer/VBoxContainer" index="2" instance=ExtResource( 5 )]
+
+margin_top = 104.0
+margin_bottom = 152.0
+product = 12
+
+[node name="CraftingRecipe4" parent="Crafting/ScrollContainer/VBoxContainer" index="3" instance=ExtResource( 5 )]
+
+margin_top = 156.0
+margin_bottom = 204.0
+product = 13
+
+[node name="CraftingRecipe5" parent="Crafting/ScrollContainer/VBoxContainer" index="4" instance=ExtResource( 5 )]
+
+margin_top = 208.0
+margin_bottom = 256.0
+product = 15
 
 [node name="Timer" type="Timer" parent="." index="4"]
 

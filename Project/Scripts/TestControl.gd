@@ -5,9 +5,6 @@ func _ready():
 	var inventory = $Inventories/Business/Inventory
 	inventory.add_item_return_rest(1,7)
 	
-	# Initialize Merchant
-	var merchant = $Merchants/Inventory2
-	merchant.add_item_return_rest(0,20)
-	merchant.add_item_return_rest(1,20)
+
 
 
